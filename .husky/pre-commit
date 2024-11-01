@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run Storybook tests before committing
+yarn storybook-test
+if [ $? -ne 0 ]; then
+    echo "Storybook tests failed. Commit aborted."
+    exit 1
+fi
